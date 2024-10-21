@@ -1,5 +1,10 @@
+import 'dart:math';
+
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:Grinbin/home/home.dart';
+import 'package:Grinbin/newLog/newLogPage.dart';
+import 'package:Grinbin/profilePage/profilePage.dart';
 import 'package:signals/signals_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,27 +23,31 @@ class _HomePageState extends State<HomePage> with SignalsMixin {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: colorScheme.primaryContainer,
+      ),
       backgroundColor: colorScheme.primaryContainer,
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
+        backgroundColor: colorScheme.primaryContainer,
         currentIndex: currentIndex.watch(context),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: "Home",
+            label: "",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_outlined),
-            label: "Add",
+            label: "",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: "Person",
+            label: "",
           ),
         ],
         onTap: (index) {
           if (index == 0) {
             currentIndex.value = 0;
-            Beamer.of(context).beamToNamed('/');
           } else if (index == 1) {
             currentIndex.value = 1;
           } else {
@@ -46,27 +55,11 @@ class _HomePageState extends State<HomePage> with SignalsMixin {
           }
         },
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Title / Greeting
-            Text(
-              'Hi',
-              style: textTheme.displaySmall,
-            ),
-            Text(
-              'Ryan',
-              style: textTheme.displayMedium,
-            ),
-
-            // Statistics
-
-            // Logs
-          ],
-        ),
-      ),
+      body: <Widget>[
+        const Home(),
+        const NewLogPage(),
+        const ProfilePage(),
+      ][currentIndex.value],
     );
   }
 }

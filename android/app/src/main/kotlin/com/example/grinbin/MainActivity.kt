@@ -1,4 +1,4 @@
-package com.example.grinbin
+package com.cygntek.grinbin
 
 import io.flutter.embedding.android.FlutterActivity
 

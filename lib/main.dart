@@ -1,9 +1,11 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
-import 'package:grinbin/home/homePage.dart';
+import 'package:Grinbin/home/homePage.dart';
+import 'package:Grinbin/login/loginPage.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -13,6 +15,7 @@ class MyApp extends StatelessWidget {
   final routerDelegate = BeamerDelegate(
     locationBuilder: RoutesLocationBuilder(routes: {
       '/': (context, state, data) => const HomePage(),
+      '/login': (context, state, data) => const LoginPage(),
     }).call,
   );
 
@@ -28,6 +31,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
+      debugShowCheckedModeBanner: false,
       routeInformationParser: BeamerParser(),
       routerDelegate: routerDelegate,
       backButtonDispatcher: BeamerBackButtonDispatcher(
