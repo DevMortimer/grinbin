@@ -7,8 +7,12 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var colorScheme = Theme.of(context).colorScheme;
 
-    return Column(
-      children: [],
+    return Scaffold(
+      appBar: AppBar(),
+      backgroundColor: colorScheme.primaryContainer,
+      body: const Column(
+        children: [],
+      ),
     );
   }
 }

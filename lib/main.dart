@@ -1,42 +1,78 @@
-import 'package:beamer/beamer.dart';
+import 'package:Grinbin/aboutPage/aboutPage.dart';
+import 'package:Grinbin/global.dart';
+import 'package:Grinbin/newLog/logDetails/logDetailsPage.dart';
+import 'package:Grinbin/newLog/newLogPage.dart';
 import 'package:flutter/material.dart';
 import 'package:Grinbin/home/homePage.dart';
 import 'package:Grinbin/login/loginPage.dart';
-import 'package:responsive_framework/responsive_framework.dart';
+import 'package:go_router/go_router.dart';
+import 'package:loader_overlay/loader_overlay.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+Future<void> main() async {
+  await Supabase.initialize(
+    url: 'https://rmkghbddycxuhqogblmh.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJta2doYmRkeWN4dWhxb2dibG1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk0ODgxODMsImV4cCI6MjA0NTA2NDE4M30.eXR2mzQ1-JbmtaH0cL07ARGlCEp_P2eSRWQok3IB-qw',
+  );
   runApp(MyApp());
 }
+
+final router = GoRouter(
+  redirect: (context, state) {
+    if (supabase.auth.currentUser == null ||
+        supabase.auth.currentSession == null) {
+      return '/login';
+    }
+
+    return null;
+  },
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => LoaderOverlay(
+        child: HomePage(
+          user: state.extra as User?,
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/login',
+      builder: (context, state) => LoaderOverlay(child: LoginPage()),
+    ),
+    GoRoute(
+      path: '/newLog',
+      builder: (context, state) => LoaderOverlay(
+        child: NewLogPage(user: state.extra as Map<String, dynamic>),
+      ),
+    ),
+    GoRoute(
+      path: '/logDetails',
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>;
+        final feel = extra['feel'];
+        final user = extra['user'] as Map<String, dynamic>;
+        return LoaderOverlay(child: LogDetailsPage(feel: feel, user: user));
+      },
+    ),
+    GoRoute(path: '/about', builder: (context, state) => AboutPage()),
+  ],
+);
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
-  final routerDelegate = BeamerDelegate(
-    locationBuilder: RoutesLocationBuilder(routes: {
-      '/': (context, state, data) => const HomePage(),
-      '/login': (context, state, data) => const LoginPage(),
-    }).call,
-  );
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      builder: (context, child) => ResponsiveBreakpoints.builder(
+      builder: (context, child) => ScreenUtilInit(
+        designSize: const Size(2400, 1080),
+        minTextAdapt: true,
         child: child!,
-        breakpoints: [
-          const Breakpoint(start: 0, end: 450, name: MOBILE),
-          const Breakpoint(start: 451, end: 800, name: TABLET),
-          const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-          const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
-        ],
       ),
       debugShowCheckedModeBanner: false,
-      routeInformationParser: BeamerParser(),
-      routerDelegate: routerDelegate,
-      backButtonDispatcher: BeamerBackButtonDispatcher(
-        delegate: routerDelegate,
-      ),
+      routerConfig: router,
     );
   }
 }

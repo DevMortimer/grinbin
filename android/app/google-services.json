@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1014335373893",
+    "project_id": "grinbin-211df",
+    "storage_bucket": "grinbin-211df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014335373893:android:ff5c2ba7113848e81b192c",
+        "android_client_info": {
+          "package_name": "com.cygntek.grinbin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJa01r92wDPHApeJ3vhxz5JAs7jMXHfLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
