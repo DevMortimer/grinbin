@@ -149,7 +149,6 @@ class _HomePageState extends State<HomePage> {
                           height: 256,
                           decoration: BoxDecoration(
                             color: colorScheme.tertiaryContainer,
-                            border: Border.all(),
                             borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(16),
                               bottomLeft: Radius.circular(16),
@@ -222,7 +221,6 @@ class _HomePageState extends State<HomePage> {
                           height: 256,
                           decoration: BoxDecoration(
                             color: colorScheme.tertiaryContainer,
-                            border: Border.all(),
                             borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(16),
                               bottomRight: Radius.circular(16),
@@ -298,7 +296,10 @@ class _HomePageState extends State<HomePage> {
                                           children: [
                                             Container(),
                                             FilledButton(
-                                              onPressed: () {},
+                                              onPressed: () => context.push(
+                                                '/viewLog',
+                                                extra: logs.value.value!.last,
+                                              ),
                                               child: const Text('View more'),
                                             ),
                                           ],

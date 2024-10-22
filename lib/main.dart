@@ -2,6 +2,7 @@ import 'package:Grinbin/aboutPage/aboutPage.dart';
 import 'package:Grinbin/global.dart';
 import 'package:Grinbin/newLog/logDetails/logDetailsPage.dart';
 import 'package:Grinbin/newLog/newLogPage.dart';
+import 'package:Grinbin/viewLog/viewLogPage.dart';
 import 'package:flutter/material.dart';
 import 'package:Grinbin/home/homePage.dart';
 import 'package:Grinbin/login/loginPage.dart';
@@ -57,6 +58,12 @@ final router = GoRouter(
       },
     ),
     GoRoute(path: '/about', builder: (context, state) => AboutPage()),
+    GoRoute(
+      path: '/viewLog',
+      builder: (context, state) => LoaderOverlay(
+        child: ViewLogPage(logToView: state.extra as Map<String, dynamic>),
+      ),
+    ),
   ],
 );
 
