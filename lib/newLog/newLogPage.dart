@@ -32,12 +32,13 @@ class NewLogPage extends StatelessWidget {
 
             // Happy
             IconButton(
-              icon: const FaIcon(
+              icon: FaIcon(
                 FontAwesomeIcons.solidFaceSmileBeam,
                 size: 48,
-                shadows: [
+                shadows: const [
                   Shadow(offset: Offset(2, 6), blurRadius: 10),
                 ],
+                color: Colors.yellow[600],
               ),
               onPressed: () => logDetail(context, 0),
             ),
@@ -45,12 +46,13 @@ class NewLogPage extends StatelessWidget {
 
             // Neutral
             IconButton(
-              icon: const FaIcon(
+              icon: FaIcon(
                 FontAwesomeIcons.solidFaceMeh,
                 size: 48,
-                shadows: [
+                shadows: const [
                   Shadow(offset: Offset(2, 6), blurRadius: 10),
                 ],
+                color: Colors.yellow[600],
               ),
               onPressed: () => logDetail(context, 1),
             ),
@@ -58,12 +60,13 @@ class NewLogPage extends StatelessWidget {
 
             // Sad
             IconButton(
-              icon: const FaIcon(
+              icon: FaIcon(
                 FontAwesomeIcons.solidFaceSadTear,
                 size: 48,
-                shadows: [
+                shadows: const [
                   Shadow(offset: Offset(2, 6), blurRadius: 10),
                 ],
+                color: Colors.yellow[600],
               ),
               onPressed: () => logDetail(context, 2),
             ),
@@ -71,12 +74,13 @@ class NewLogPage extends StatelessWidget {
 
             // Angry
             IconButton(
-              icon: const FaIcon(
+              icon: FaIcon(
                 FontAwesomeIcons.solidFaceAngry,
                 size: 48,
-                shadows: [
+                shadows: const [
                   Shadow(offset: Offset(2, 6), blurRadius: 10),
                 ],
+                color: Colors.yellow[600],
               ),
               onPressed: () => logDetail(context, 3),
             ),

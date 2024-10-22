@@ -42,6 +42,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: Container(), // to remove the back button
         actions: [
           // Info button
           IconButton(
@@ -190,13 +191,37 @@ class _HomePageState extends State<HomePage> {
                                       redact: logs.value.value == null ||
                                           user.value.value == null,
                                     ),
-                                    const Text(
-                                      'logs.',
-                                      style: TextStyle(
+                                    Text(
+                                      "${(logs.value.value?.length ?? 0) <= 1 ? 'log' : 'logs'}.",
+                                      style: const TextStyle(
                                         fontSize: 28,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
+                                    const SizedBox(height: 8),
+
+                                    // Explore more
+                                    if (logs.value.value != null &&
+                                        logs.value.value!.isNotEmpty)
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              right: 16,
+                                            ),
+                                            child: FilledButton(
+                                              onPressed: () => context.push(
+                                                '/logs',
+                                                extra: logs.value.value!,
+                                              ),
+                                              child: const Text('See all'),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                   ],
                                 ),
                               ),
@@ -238,7 +263,10 @@ class _HomePageState extends State<HomePage> {
                           child: Watch(
                             (context) => Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: logs.value.value != null &&
+                                      logs.value.value!.isNotEmpty
+                                  ? MainAxisAlignment.spaceAround
+                                  : MainAxisAlignment.center,
                               children: logs.value.value != null &&
                                       logs.value.value!.isNotEmpty
                                   ? [
@@ -268,6 +296,8 @@ class _HomePageState extends State<HomePage> {
                                                   fontSize: 22,
                                                   fontWeight: FontWeight.w500,
                                                 ),
+                                                maxLines: 5,
+                                                overflow: TextOverflow.ellipsis,
                                               ),
                                             ),
                                             FaIcon(

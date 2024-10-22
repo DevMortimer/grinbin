@@ -1,5 +1,6 @@
 import 'package:Grinbin/aboutPage/aboutPage.dart';
 import 'package:Grinbin/global.dart';
+import 'package:Grinbin/logs/logsPage.dart';
 import 'package:Grinbin/newLog/logDetails/logDetailsPage.dart';
 import 'package:Grinbin/newLog/newLogPage.dart';
 import 'package:Grinbin/viewLog/viewLogPage.dart';
@@ -62,6 +63,12 @@ final router = GoRouter(
       path: '/viewLog',
       builder: (context, state) => LoaderOverlay(
         child: ViewLogPage(logToView: state.extra as Map<String, dynamic>),
+      ),
+    ),
+    GoRoute(
+      path: '/logs',
+      builder: (context, state) => LoaderOverlay(
+        child: LogsPage(logs: state.extra as List<Map<String, dynamic>>),
       ),
     ),
   ],

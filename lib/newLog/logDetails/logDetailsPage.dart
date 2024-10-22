@@ -61,7 +61,7 @@ class LogDetailsPage extends StatelessWidget {
                 height: 128,
                 child: TextField(
                   controller: descriptionController,
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.multiline,
                   textAlignVertical: TextAlignVertical.top,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
