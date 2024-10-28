@@ -4,6 +4,7 @@ import 'package:Grinbin/logs/logsPage.dart';
 import 'package:Grinbin/newLog/logDetails/logDetailsPage.dart';
 import 'package:Grinbin/newLog/newLogPage.dart';
 import 'package:Grinbin/viewLog/viewLogPage.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:Grinbin/home/homePage.dart';
 import 'package:Grinbin/login/loginPage.dart';
@@ -85,6 +86,9 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         child: child!,
       ),
+      theme: FlexThemeData.light(scheme: FlexScheme.espresso),
+      darkTheme: FlexThemeData.dark(scheme: FlexScheme.espresso),
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       routerConfig: router,
     );
