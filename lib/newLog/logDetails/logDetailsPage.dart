@@ -32,50 +32,53 @@ class LogDetailsPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              FaIcon(
-                [
-                  FontAwesomeIcons.solidFaceSmileBeam,
-                  FontAwesomeIcons.solidFaceMeh,
-                  FontAwesomeIcons.solidFaceSadTear,
-                  FontAwesomeIcons.solidFaceAngry,
-                ][feel],
-                size: 64,
-              ),
-
-              const Center(
-                child: Text(
-                  "What's going on?",
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w900,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Column(
+              children: [
+                FaIcon(
+                  [
+                    FontAwesomeIcons.solidFaceSmileBeam,
+                    FontAwesomeIcons.solidFaceMeh,
+                    FontAwesomeIcons.solidFaceSadTear,
+                    FontAwesomeIcons.solidFaceAngry,
+                  ][feel],
+                  size: 64,
+                ),
+            
+                const Center(
+                  child: Text(
+                    "What's going on?",
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 48),
-
-              // Description input
-              SizedBox(
-                width: 400,
-                height: 128,
-                child: TextField(
-                  controller: descriptionController,
-                  keyboardType: TextInputType.multiline,
-                  textAlignVertical: TextAlignVertical.top,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    filled: true,
-                    labelText: "Description*",
-                    alignLabelWithHint: true,
+                const SizedBox(height: 48),
+            
+                // Description input
+                SizedBox(
+                  width: 400,
+                  height: 128,
+                  child: TextField(
+                    controller: descriptionController,
+                    keyboardType: TextInputType.multiline,
+                    textAlignVertical: TextAlignVertical.top,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      labelText: "Description*",
+                      alignLabelWithHint: true,
+                    ),
+                    maxLines: null,
+                    expands: true,
+                    maxLength: 120,
+                    onSubmitted: (string) async => await submitLog(context),
                   ),
-                  maxLines: null,
-                  expands: true,
-                  maxLength: 120,
-                  onSubmitted: (string) async => await submitLog(context),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -121,22 +121,19 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 48),
+                  const SizedBox(height: 24),
 
                   // Statistics
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 32),
-                        child: Transform.rotate(
-                          angle: -pi / 2,
-                          child: const Text(
-                            'Statistics',
-                            style: TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                            ),
+                      Transform.rotate(
+                        angle: -pi / 2,
+                        child: const Text(
+                          'Statistics',
+                          style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
@@ -149,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                           width: 256,
                           height: 256,
                           decoration: BoxDecoration(
-                            color: colorScheme.tertiaryContainer,
+                            color: colorScheme.inversePrimary,
                             borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(16),
                               bottomLeft: Radius.circular(16),
@@ -164,68 +161,67 @@ class _HomePageState extends State<HomePage> {
                               )
                             ],
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              // You have made
-                              Watch(
-                                (context) => Column(
-                                  children: [
-                                    const Text(
-                                      'You have made',
-                                      style: TextStyle(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.w600,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // You have made
+                                Watch(
+                                  (context) => Column(
+                                    children: [
+                                      const Text(
+                                        'You have made',
+                                        style: TextStyle(
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      "${logs.value.value?.length ?? '000'}",
-                                      style: TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.w900,
-                                        color: colorScheme.surfaceTint,
+                                      Text(
+                                        "${logs.value.value?.length ?? '000'}",
+                                        style: TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w900,
+                                          color: colorScheme.surfaceTint,
+                                        ),
+                                      ).redacted(
+                                        context: context,
+                                        redact: logs.value.value == null ||
+                                            user.value.value == null,
                                       ),
-                                    ).redacted(
-                                      context: context,
-                                      redact: logs.value.value == null ||
-                                          user.value.value == null,
-                                    ),
-                                    Text(
-                                      "${(logs.value.value?.length ?? 0) <= 1 ? 'log' : 'logs'}.",
-                                      style: const TextStyle(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.w600,
+                                      Text(
+                                        "${(logs.value.value?.length ?? 0) <= 1 ? 'log' : 'logs'}.",
+                                        style: const TextStyle(
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(height: 8),
+                                      const SizedBox(height: 8),
 
-                                    // Explore more
-                                    if (logs.value.value != null &&
-                                        logs.value.value!.isNotEmpty)
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              right: 16,
-                                            ),
-                                            child: FilledButton(
+                                      // Explore more
+                                      if (logs.value.value != null &&
+                                          logs.value.value!.isNotEmpty)
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(),
+                                            FilledButton(
                                               onPressed: () => context.push(
                                                 '/logs',
                                                 extra: logs.value.value!,
                                               ),
                                               child: const Text('See all'),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                  ],
+                                          ],
+                                        ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -245,7 +241,7 @@ class _HomePageState extends State<HomePage> {
                           width: 256,
                           height: 256,
                           decoration: BoxDecoration(
-                            color: colorScheme.tertiaryContainer,
+                            color: colorScheme.inversePrimary,
                             borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(16),
                               bottomRight: Radius.circular(16),
@@ -260,30 +256,29 @@ class _HomePageState extends State<HomePage> {
                               )
                             ],
                           ),
-                          child: Watch(
-                            (context) => Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: logs.value.value != null &&
-                                      logs.value.value!.isNotEmpty
-                                  ? MainAxisAlignment.spaceAround
-                                  : MainAxisAlignment.center,
-                              children: logs.value.value != null &&
-                                      logs.value.value!.isNotEmpty
-                                  ? [
-                                      const Text(
-                                        'Your latest log info.',
-                                        style: TextStyle(
-                                          fontSize: 28,
-                                          fontWeight: FontWeight.w600,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            child: Watch(
+                              (context) => Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: logs.value.value != null &&
+                                        logs.value.value!.isNotEmpty
+                                    ? MainAxisAlignment.spaceAround
+                                    : MainAxisAlignment.center,
+                                children: logs.value.value != null &&
+                                        logs.value.value!.isNotEmpty
+                                    ? [
+                                        const Text(
+                                          'Your latest log info.',
+                                          style: TextStyle(
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
-                                      ),
 
-                                      // Description (brief)
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 16,
-                                        ),
-                                        child: Row(
+                                        // Description (brief)
+                                        Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
@@ -297,7 +292,8 @@ class _HomePageState extends State<HomePage> {
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                                 maxLines: 5,
-                                                overflow: TextOverflow.ellipsis,
+                                                overflow:
+                                                    TextOverflow.ellipsis,
                                               ),
                                             ),
                                             FaIcon(
@@ -307,20 +303,17 @@ class _HomePageState extends State<HomePage> {
                                                 FontAwesomeIcons.solidFaceMeh,
                                                 FontAwesomeIcons
                                                     .solidFaceSadTear,
-                                                FontAwesomeIcons.solidFaceAngry,
+                                                FontAwesomeIcons
+                                                    .solidFaceAngry,
                                               ][logs.value.value!
                                                   .last['feeling']],
                                               size: 48,
                                             ),
                                           ],
                                         ),
-                                      ),
 
-                                      // View more button
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 16),
-                                        child: Row(
+                                        // View more button
+                                        Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
@@ -333,27 +326,27 @@ class _HomePageState extends State<HomePage> {
                                               child: const Text('View more'),
                                             ),
                                           ],
+                                        )
+                                      ]
+                                    : [
+                                        const Text(
+                                          'No logs yet.',
+                                          style: TextStyle(
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
-                                      )
-                                    ]
-                                  : [
-                                      const Text(
-                                        'No logs yet.',
-                                        style: TextStyle(
-                                          fontSize: 28,
-                                          fontWeight: FontWeight.w600,
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 32, right: 32),
+                                          child: Text(
+                                            'Press the button on the bottom right to get started!',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontSize: 16),
+                                          ),
                                         ),
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 32, right: 32),
-                                        child: Text(
-                                          'Press the button on the bottom right to get started!',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 16),
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                              ),
                             ),
                           ),
                         ),

@@ -5,6 +5,7 @@
     <application
         android:label="Grinbin"
         android:name="${applicationName}"
+	android:extractNativeLibs="true" 
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

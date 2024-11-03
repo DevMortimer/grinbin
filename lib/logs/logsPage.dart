@@ -50,9 +50,14 @@ class LogsPage extends StatelessWidget {
                       onTap: () => context.push('/viewLog', extra: logs[index]),
                       child: SizedBox(
                         height: 128,
-                        child: Card(
+                        child: Card.filled(
+                          elevation: 8,
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
+                            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
                             child: Row(
                               children: [
                                 // Icon
@@ -74,16 +79,21 @@ class LogsPage extends StatelessWidget {
                                 const SizedBox(width: 16),
 
                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     // Description
-                                    Text(
-                                      logs[index]['description'],
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w800,
+                                    SizedBox(
+                                      width: 180,
+                                      child: Text(
+                                        logs[index]['description'],
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w800,
+                                        ),
                                       ),
                                     ),
+
                                     // Date
                                     Text(
                                       '${getDate(index).day}/${getDate(index).month}/${getDate(index).year}',
