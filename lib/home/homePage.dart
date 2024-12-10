@@ -44,6 +44,14 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         leading: Container(), // to remove the back button
         actions: [
+          // Feedback button
+          IconButton(
+            icon: const Icon(Icons.feedback_rounded),
+            onPressed: () => {
+              // Show get feedback dialog
+            },
+          ),
+
           // Info button
           IconButton(
             icon: const Icon(Icons.info_rounded),
@@ -72,7 +80,10 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () =>
                       context.push('/newLog', extra: user.value.value!),
                   backgroundColor: colorScheme.surfaceContainerLow,
-                  child: const Icon(Icons.add_rounded),
+                  child: Icon(
+                    Icons.add_rounded,
+                    color: colorScheme.onSurface,
+                  ),
                 )
               : null,
         ),
@@ -292,8 +303,7 @@ class _HomePageState extends State<HomePage> {
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                                 maxLines: 5,
-                                                overflow:
-                                                    TextOverflow.ellipsis,
+                                                overflow: TextOverflow.ellipsis,
                                               ),
                                             ),
                                             FaIcon(
@@ -303,8 +313,7 @@ class _HomePageState extends State<HomePage> {
                                                 FontAwesomeIcons.solidFaceMeh,
                                                 FontAwesomeIcons
                                                     .solidFaceSadTear,
-                                                FontAwesomeIcons
-                                                    .solidFaceAngry,
+                                                FontAwesomeIcons.solidFaceAngry,
                                               ][logs.value.value!
                                                   .last['feeling']],
                                               size: 48,

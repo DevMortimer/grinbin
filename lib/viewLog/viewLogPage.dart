@@ -64,14 +64,18 @@ class ViewLogPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          FaIcon(
-                            [
-                              FontAwesomeIcons.solidFaceSmileBeam,
-                              FontAwesomeIcons.solidFaceMeh,
-                              FontAwesomeIcons.solidFaceSadTear,
-                              FontAwesomeIcons.solidFaceAngry,
-                            ][logToView['feeling']],
-                            size: 48,
+                          Hero(
+                            tag:
+                                "${logToView['description']}_${logToView['feeling']}",
+                            child: FaIcon(
+                              [
+                                FontAwesomeIcons.solidFaceSmileBeam,
+                                FontAwesomeIcons.solidFaceMeh,
+                                FontAwesomeIcons.solidFaceSadTear,
+                                FontAwesomeIcons.solidFaceAngry,
+                              ][logToView['feeling']],
+                              size: 48,
+                            ),
                           ),
                           Text(
                             calculateHowLongAgo(),

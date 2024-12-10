@@ -57,24 +57,31 @@ class LogsPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 80),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 32,
+                              vertical: 8,
+                            ),
                             child: Row(
                               children: [
                                 // Icon
-                                FaIcon(
-                                  [
-                                    FontAwesomeIcons.solidFaceSmileBeam,
-                                    FontAwesomeIcons.solidFaceMeh,
-                                    FontAwesomeIcons.solidFaceSadTear,
-                                    FontAwesomeIcons.solidFaceAngry,
-                                  ][logs[index]['feeling']],
-                                  size: 48,
-                                  color: [
-                                    Colors.yellow[800],
-                                    Colors.grey,
-                                    Colors.blue,
-                                    Colors.red,
-                                  ][logs[index]['feeling']],
+                                Hero(
+                                  tag:
+                                      "${logs[index]['description']}_${logs[index]['feeling']}",
+                                  child: FaIcon(
+                                    [
+                                      FontAwesomeIcons.solidFaceSmileBeam,
+                                      FontAwesomeIcons.solidFaceMeh,
+                                      FontAwesomeIcons.solidFaceSadTear,
+                                      FontAwesomeIcons.solidFaceAngry,
+                                    ][logs[index]['feeling']],
+                                    size: 48,
+                                    color: [
+                                      Colors.yellow[800],
+                                      Colors.grey,
+                                      Colors.blue,
+                                      Colors.red,
+                                    ][logs[index]['feeling']],
+                                  ),
                                 ),
                                 const SizedBox(width: 16),
 
