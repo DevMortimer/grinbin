@@ -57,7 +57,7 @@ class LogsPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+                            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 80),
                             child: Row(
                               children: [
                                 // Icon

@@ -89,12 +89,20 @@ class LoginPage extends StatelessWidget {
     // Empty inputs
     if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
       await showAlertDialog(context, "Please fill in all the fields.");
+      throw "Please fill in all the fields.";
+    }
+
+    // Don't accept uppecases
+    if (usernameController.text.toLowerCase() != usernameController.text) {
+      await showAlertDialog(context, "Uppercases are not accepted on the username field.");
+      throw "Uppercases are not accepted on the username field.";
     }
 
     // Invalid inputs
     if (usernameController.text.contains(' ') ||
         passwordController.text.contains(' ')) {
       await showAlertDialog(context, "Fields must not contain spaces.");
+      throw "Fields must not contain spaces.";
     }
   }
 
@@ -114,9 +122,11 @@ class LoginPage extends StatelessWidget {
     } on AuthApiException catch (e) {
       context.loaderOverlay.hide();
       await showAlertDialog(context, "Failed to login!\n\n${e.message}");
+      return;
     } catch (e) {
       context.loaderOverlay.hide();
       await showAlertDialog(context, "Failed to login!");
+      return;
     }
   }
 
@@ -148,6 +158,7 @@ class LoginPage extends StatelessWidget {
       } else {
         await showAlertDialog(context, "Failed to sign up!\n\n${e.message}");
       }
+      return;
     }
   }
 }
