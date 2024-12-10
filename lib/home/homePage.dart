@@ -45,12 +45,12 @@ class _HomePageState extends State<HomePage> {
         leading: Container(), // to remove the back button
         actions: [
           // Feedback button
-          IconButton(
+          /* IconButton(
             icon: const Icon(Icons.feedback_rounded),
             onPressed: () => {
               // Show get feedback dialog
             },
-          ),
+          ), */
 
           // Info button
           IconButton(

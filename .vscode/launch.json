@@ -8,21 +8,21 @@
       "name": "Grinbin",
       "request": "launch",
       "type": "dart",
-      "args": ["--device-user", "0"]
+      // "args": ["--device-user", "0"]
     },
     {
       "name": "Grinbin (profile mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile",
-      "args": ["--device-user", "0"]
+      // "args": ["--device-user", "0"]
     },
     {
       "name": "Grinbin (release mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release",
-      "args": ["--device-user", "0"]
+      // "args": ["--device-user", "0"]
     }
   ]
 }
