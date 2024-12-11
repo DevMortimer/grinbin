@@ -24,6 +24,8 @@ class _HomePageState extends State<HomePage> {
   late final FutureSignal<Map<String, dynamic>> user;
   late final FutureSignal<List<Map<String, dynamic>>> logs;
 
+  TextEditingController feedbackController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -45,22 +47,63 @@ class _HomePageState extends State<HomePage> {
         leading: Container(), // to remove the back button
         actions: [
           // Feedback button
-          /* IconButton(
-            icon: const Icon(Icons.feedback_rounded),
-            onPressed: () => {
+          IconButton(
+            icon: Icon(
+              Icons.feedback_rounded,
+              color: colorScheme.onPrimaryContainer,
+            ),
+            onPressed: () {
               // Show get feedback dialog
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  icon: const Icon(Icons.feedback_rounded),
+                  title: const Text("Feedback"),
+                  content: TextField(
+                    controller: feedbackController,
+                    maxLines: 10,
+                    minLines: 1,
+                  ),
+                  actions: [
+                    TextButton(
+                      child: const Text("Cancel"),
+                      onPressed: () => context.pop(),
+                    ),
+                    TextButton(
+                      child: const Text("Confirm"),
+                      onPressed: () async {
+                        // TODO
+                        context.loaderOverlay.show();
+                        await supabase.from('feedbacks').insert({
+                          'content': feedbackController.text,
+                          'user': user.requireValue['id'],
+                        });
+                        context.loaderOverlay.hide();
+                        context.pop();
+                        feedbackController.clear();
+                      },
+                    ),
+                  ],
+                ),
+              );
             },
-          ), */
+          ),
 
           // Info button
           IconButton(
-            icon: const Icon(Icons.info_rounded),
+            icon: Icon(
+              Icons.info_rounded,
+              color: colorScheme.onPrimaryContainer,
+            ),
             onPressed: () => context.push('/about'),
           ),
 
           // Logout button
           IconButton(
-            icon: const Icon(Icons.logout_rounded),
+            icon: Icon(
+              Icons.logout_rounded,
+              color: colorScheme.onPrimaryContainer,
+            ),
             onPressed: () async {
               context.loaderOverlay.show();
               await supabase.auth.signOut();
